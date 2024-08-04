@@ -3,11 +3,11 @@ import {
   FinancialRecord,
   useFinancialRecords,
 } from "../../contexts/financial-record-context";
-import { useTable, Column, CellProps, Row } from "react-table";
+import { useTable, Column, CellProps} from "react-table";
 
 interface EditableCellProps extends CellProps<FinancialRecord> {
-  updateRecord: (rowIndex: number, columnId: string, value: any) => void;
-  editable: boolean;
+    updateRecord: (rowIndex: number, columnId: string, value: string) => void;
+    editable: boolean;
 }
 
 const EditableCell: React.FC<EditableCellProps> = ({
@@ -50,10 +50,10 @@ const EditableCell: React.FC<EditableCellProps> = ({
 export const FinancialRecordList = () => {
   const { records, updateRecord, deleteRecord } = useFinancialRecords();
 
-  const updateCellRecord = (rowIndex: number, columnId: string, value: any) => {
+const updateCellRecord = (rowIndex: number, columnId: string, value: string) => {
     const id = records[rowIndex]?._id;
     updateRecord(id ?? "", { ...records[rowIndex], [columnId]: value });
-  };
+};
 
   const columns: Array<Column<FinancialRecord>> = useMemo(
     () => [
@@ -146,16 +146,16 @@ export const FinancialRecordList = () => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row, idx) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
-                ))}
-              </tr>
-            );
-          })}
+            {rows.map((row) => { // Remove 'idx' from the parameter list
+                prepareRow(row);
+                return (
+                    <tr {...row.getRowProps()}>
+                        {row.cells.map((cell) => (
+                            <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
+                        ))}
+                    </tr>
+                );
+            })}
         </tbody>
       </table>
     </div>
