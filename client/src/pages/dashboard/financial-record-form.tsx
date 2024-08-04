@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 
 export const FinancialRecordForm = () => {
+    
+    // Hook para obtener el usuario actual
     const { user } = useUser();
 
     // Estados para manejar los valores de los campos del formulario
@@ -25,6 +27,7 @@ export const FinancialRecordForm = () => {
         // Llamada a la base de datos para añadir un nuevo registro financiero
         // addRecord(newRecord);
 
+        // Loggear el nuevo registro en la consola
         console.log("Form Submitted", newRecord);
 
         // Resetear los campos del formulario
@@ -34,6 +37,7 @@ export const FinancialRecordForm = () => {
         setPaymentMethod("");
     };
 
+    // Formulario para añadir un nuevo registro financiero
     return (
         <div className="form-container">
             <form onSubmit={handleSubmit}>

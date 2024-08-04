@@ -3,6 +3,14 @@ import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import { Dashboard } from './pages/dashboard'
 import { Auth } from './pages/auth'
 
+
+/*
+PARA CREAR ENVIRONMENT:
+yarn create vite (ESCOGER REACT Y TYPESCRIPT)
+yarn
+yarn dev
+*/
+
 function App() {
   return <Router>
     <div className = "app-container">
