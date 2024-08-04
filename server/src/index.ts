@@ -17,6 +17,10 @@
  import mongoose from 'mongoose'
  //importa el router de financial-records
  import financialRecordRouter from './routes/financial-records'
+ //importa cors para permitir que el frontend se conecte al backend
+import cors from 'cors'
+
+
 
  //crea una instancia de express
  const app: Express = express()
@@ -24,8 +28,9 @@
  const port = process.env.PORT || 3001;
 //crea una constante con la url de la base de datos
  app.use(express.json())
+ app.use(cors())
 //conecta la base de datos
- const mongoURI: string = "mongodb+srv://williamstevencole:1MfE7Y6uInZIQCGa@personalfinancetracker.quqxx6g.mongodb.net/"
+const mongoURI: string = "mongodb+srv://williamstevencole:1MfE7Y6uInZIQCGa@personalfinancetracker.quqxx6g.mongodb.net/"
 mongoose.
 connect(mongoURI)
 .then(() => console.log("CONNECTED TO MONGODB"))
